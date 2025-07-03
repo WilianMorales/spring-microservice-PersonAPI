@@ -17,7 +17,8 @@ Este proyecto es un **microservicio en Java con Spring Boot** que permite la ges
 ## 📌 Características
 
 - Arquitectura Hexagonal
-- CRUD completo de personas (crear, leer, actualizar, eliminar)
+- CRUD completo de Personas (crear, listar, actualizar, eliminar)
+- CRUD parcial de Empleos
 - Validaciones y manejo de errores personalizado
 - Documentación OpenAPI (Swagger UI)
 - Configuración externa mediante `application.properties`
@@ -64,13 +65,25 @@ Todos los endpoints están documentados automáticamente con Swagger:
 
 ### 📄 Endpoints disponibles
 
-| Método | Endpoint        | Descripción                         |
-|--------|------------------|-------------------------------------|
-| GET    | `/persons`       | Lista todas las personas            |
-| GET    | `/persons/{id}`  | Obtiene una persona por su ID       |
-| POST   | `/persons`       | Crea una nueva persona              |
-| PUT    | `/persons/{id}`  | Actualiza una persona existente     |
-| DELETE | `/persons/{id}`  | Elimina una persona por su ID       |
+🔗 Personas (`api/persons`)
+
+| Método | Endpoint             | Descripción                         |
+|--------|----------------------|-------------------------------------|
+| GET    | `/api/persons`       | Lista todas las personas            |
+| GET    | `/api/persons/{id}`  | Obtiene una persona por su ID       |
+| POST   | `/api/persons`       | Crea una nueva persona              |
+| PUT    | `/api/persons/{id}`  | Actualiza una persona existente     |
+| DELETE | `/api/persons/{id}`  | Elimina una persona por su ID       |
+
+🔗 Empleos (`api/employments`)
+
+
+| Método | Endpoint                                | Descripción                                         |
+|--------|-----------------------------------------|-----------------------------------------------------|
+| GET    | `/api/employments/person/{personId}`    | Listar todos los empleos de una persona             |
+| POST   | `/api/employments`                      | Crear un nuevo empleo para una persona              |
+| PUT    | `/api/employments/{id}`                 | Actualizar los datos de un empleo existente por ID  |
+| DELETE | `/api/employments/{id}`                 | Eliminar un empleo por su ID                        |
 
 ## 🛠️ Cómo ejecutar el proyecto
 
