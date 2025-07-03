@@ -85,6 +85,9 @@ Todos los endpoints están documentados automáticamente con Swagger:
 | PUT    | `/api/employments/{id}`                 | Actualizar los datos de un empleo existente por ID  |
 | DELETE | `/api/employments/{id}`                 | Eliminar un empleo por su ID                        |
 
+> Vista previa de la api:
+![Design preview](./desktop-preview.png)
+
 ## 🛠️ Cómo ejecutar el proyecto
 
 ### 1. Clonar el repositorio
