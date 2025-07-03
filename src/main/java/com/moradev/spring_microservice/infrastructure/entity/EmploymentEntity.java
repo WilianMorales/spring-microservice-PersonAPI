@@ -18,7 +18,7 @@ public class EmploymentEntity {
     private String company;
     private Double salary;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", nullable = false)
     private PersonEntity person;
 }

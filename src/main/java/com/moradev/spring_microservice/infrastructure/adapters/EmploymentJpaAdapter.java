@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -34,6 +35,12 @@ public class EmploymentJpaAdapter implements EmploymentPersistencePort {
     }
 
     @Override
+    public Optional<EmploymentModel> findById(Long id) {
+        return employmentRepository.findById(id)
+                .map(employmentMapper::mapToEmploymentModel);
+    }
+
+    @Override
     public List<EmploymentModel> getEmploymentsByPersonId(Long personId) {
         List<EmploymentEntity> entities = employmentRepository.findByPersonId(personId);
         return employmentMapper.mapToEmploymentListModel(entities);
@@ -41,6 +48,22 @@ public class EmploymentJpaAdapter implements EmploymentPersistencePort {
 
     @Override
     public void deleteEmployment(Long id) {
+        if (!employmentRepository.existsById(id)) {
+            throw new NotFoundException("Empleo no encontrado");
+        }
         employmentRepository.deleteById(id);
+    }
+
+    @Override
+    public EmploymentModel updateEmployment(EmploymentModel employmentModel) {
+        EmploymentEntity existing = employmentRepository.findById(employmentModel.getId())
+                .orElseThrow(() -> new NotFoundException("Empleo no encontrado"));
+
+        existing.setPosition(employmentModel.getPosition());
+        existing.setCompany(employmentModel.getCompany());
+        existing.setSalary(employmentModel.getSalary());
+
+        EmploymentEntity updated = employmentRepository.save(existing);
+        return employmentMapper.mapToEmploymentModel(updated);
     }
 }

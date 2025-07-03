@@ -26,4 +26,15 @@ public class EmploymentServiceImpl implements EmploymentServicePort {
     public void deleteEmployment(Long id) {
         employmentPersistencePort.deleteEmployment(id);
     }
+
+    @Override
+    public EmploymentModel findById(Long id) {
+        return employmentPersistencePort.findById(id)
+                .orElseThrow(() -> new RuntimeException("Empleo no encontrado")); // Puedes usar tu propia excepción aquí
+    }
+
+    @Override
+    public EmploymentModel updateEmployment(EmploymentModel employment) {
+        return employmentPersistencePort.updateEmployment(employment);
+    }
 }

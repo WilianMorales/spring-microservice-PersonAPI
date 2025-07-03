@@ -11,4 +11,8 @@ public interface EmploymentServicePort {
     List<EmploymentModel> getEmploymentsByPersonId(Long personId);
 
     void deleteEmployment(Long id);
+
+    EmploymentModel findById(Long id);
+
+    EmploymentModel updateEmployment(EmploymentModel employment);
 }
